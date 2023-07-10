@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WeatherApp</title>
+</head>
+<body>
+
+<div class="search">
+  <input type="text" placeholder="Search City..." [(ngModel)]="cityName">
+  <button type="button" class="btn btn-primary" (click)="searchWeather()">Search</button>
+</div>
+
+<div class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<!-- Container for weather data -->
+<div class="container" *ngIf="weather">
+
+  <div class="upper-data">
+    <!-- Show image if temperature is greater than 15 degrees Celsius -->
+    <img src="../assets/clear.jpg" *ngIf="weather.temp > 15">
+    <!-- Show image if temperature is 15 degrees Celsius or less -->
+    <img src="../assets/cloudy.jpg" *ngIf="weather.temp <= 15 ">
+
+    <div class="weather-data">
+      <div class="location">{{ weather.name }}</div>
+      <div class="temperature">{{ weather.temp }}°C</div>
+    </div>
+  </div>
+
+  <div class="lower-data">
+    <div class="more-info-label">
+      More Information
+    </div>
+    <div class="more-info-container">
+      <!-- Info block for minimum temperature -->
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/min.png">
+          <span>min</span>
+        </div>
+        <div class="info-block-value">
+          {{ weather.min_temp }}°C
+        </div>
+      </div>
+
+      <!-- Info block for maximum temperature -->
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/max.webp">
+          <span>max</span>
+        </div>
+        <div class="info-block-value">
+          {{ weather.max_temp }}°C
+        </div>
+      </div>
+
+      <!-- Info block for humidity -->
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/humidity.png">
+          <span>humidity</span>
+        </div>
+        <div class="info-block-value">
+          {{ weather.humidity }}%
+        </div>
+      </div>
+
+      <!-- Info block for wind speed -->
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind.png">
+          <span>wind</span>
+        </div>
+        <div class="info-block-value">
+          {{ weather.wind }} km/h
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
