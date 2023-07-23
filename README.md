@@ -17,6 +17,10 @@ Follow these steps to run the WeatherApp on your local machine:
     
 ## Usage     
    
-1. Enter the name of a city in the search input field. (Example: Berlin)                    
-2. Click on the "Search" button to search for the weather information.          
-3. The application will display the temperature, minimum and maximum temperature, humidity, and wind speed for the searched city.               
+1. Enter the name of a city in the search input field. (Example: Berlin)
+   ![image](https://github.com/MiltiadisN/Weather-Angular/assets/103901423/a219137d-f62e-4969-aea6-a661a9f2d7a6)
+3. Click on the "Search" button to search for the weather information.
+   ![image](https://github.com/MiltiadisN/Weather-Angular/assets/103901423/cd96c79b-7929-4ba4-a5d5-b0b9b5272652)
+5. The application will display the temperature, minimum and maximum temperature, humidity, and wind speed for the searched city.
+   ![image](https://github.com/MiltiadisN/Weather-Angular/assets/103901423/ca5a9843-979a-4720-b66f-6d3b9fe5cbf5)
+            
