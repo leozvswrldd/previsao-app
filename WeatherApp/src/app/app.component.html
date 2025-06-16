@@ -5,13 +5,13 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>WeatherApp</title>
+  <title>Previsão do Tempo</title>
 </head>
 <body>
 
 <div class="search">
   <input type="text" placeholder="Search City..." [(ngModel)]="cityName">
-  <button type="button" class="btn btn-primary" (click)="searchWeather()">Search</button>
+  <button type="button" class="btn btn-primary" (click)="searchWeather()">Buscar</button>
 </div>
 
 <div class="error-message" *ngIf="errorMessage">
@@ -38,7 +38,7 @@
       More Information
     </div>
     <div class="more-info-container">
-      <!-- Info block for minimum temperature -->
+      <!-- bloco de informações de temperatura mínima -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/min.png">
@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <!-- Info block for maximum temperature -->
+      <!-- bloco de informações de temperatura máxima -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/max.webp">
@@ -60,22 +60,22 @@
         </div>
       </div>
 
-      <!-- Info block for humidity -->
+      <!-- bloco de informações de umidade -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/humidity.png">
-          <span>humidity</span>
+          <span>umidade</span>
         </div>
         <div class="info-block-value">
           {{ weather.humidity }}%
         </div>
       </div>
 
-      <!-- Info block for wind speed -->
+      <!-- bloco de informações de velocidade do vento -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/wind.png">
-          <span>wind</span>
+          <span>vento</span>
         </div>
         <div class="info-block-value">
           {{ weather.wind }} km/h

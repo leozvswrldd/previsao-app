@@ -4,45 +4,43 @@ import {WeatherService} from "./weather.service";
 import {catchError, tap} from "rxjs";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
-export class AppComponent implements OnInit{
-  title = 'WeatherApp';
+export class AppComponent implements OnInit {
+  title = "WeatherApp";
 
+  weather: Weather | null; // objeto para armazenar os dados do clima
+  cityName: string; // input para armazenar o nome da cidade
 
-  weather: Weather | null; // Weather object to store weather data
-  cityName: string; // Input field for the city name
+  errorMessage: string | null; // mensagem de erro para exibir quando ocorrer um erro
 
-  errorMessage: string | null; // Error message if something goes wrong
+  constructor(private weatherService: WeatherService) {} // injeta o serviço WeatherService
 
-
-
-  constructor(private weatherService: WeatherService) { } // Inject the WeatherService
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   searchWeather() {
     if (this.cityName) {
-      this.getWeatherDataImp(this.cityName); // Call the function to get weather data
+      this.getWeatherDataImp(this.cityName); // chama a funcao para buscar os dados do clima
     } else {
-      this.errorMessage = 'Please enter a city name.'; // Show an error if the city name is not provided
-      this.weather = null; // Clear the weather data
+      this.errorMessage = "Please enter a city name."; //mostra uma mensagem de erro se o nome da cidade nao for informado
+      this.weather = null; // limpa os dados do clima
     }
   }
 
   getWeatherDataImp(cityName: string) {
-    this.weatherService.getWeatherData(cityName)
+    this.weatherService
+      .getWeatherData(cityName)
       .pipe(
-        tap((data: any) => { // Perform side effects without modifying the emitted value
-          if (data.cod === '404') { // Check if the city is not found
-            this.errorMessage = 'City not found.'; // Set the error message
-            this.weather = null; // Clear the weather data
+        tap((data: any) => {
+          // Perform side effects without modifying the emitted value
+          if (data.cod === "404") {
+            // verifica se a cidade nao foi encontrada
+            this.errorMessage = "City not found."; // mensagem de erro
+            this.weather = null; // limpa os dados do clima
           } else {
-            this.errorMessage = null; // Clear any previous error message
+            this.errorMessage = null; // limpa a mensagem de erro
             this.weather = {
               temp: data.main.temp,
               min_temp: data.main.temp_min,
@@ -50,16 +48,16 @@ export class AppComponent implements OnInit{
               humidity: data.main.humidity,
               wind: data.wind.speed,
               name: data.name,
-            }; // Store the weather data in the weather object
+            }; // armazena os dados do clima
           }
         }),
-        catchError(error => { // Catch and handle any errors that occur during the HTTP request
-          this.errorMessage = 'Please enter a valid city name.';
+        catchError((error) => {
+          // encontra erro during a requisição e exibe uma mensagem de erro
+          this.errorMessage = "Please enter a valid city name.";
           this.weather = null;
-          throw error; // Rethrow the error to be caught by the caller if needed
+          throw error; 
         })
       )
-      .subscribe(); // Subscribe to the observable to initiate the HTTP request
+      .subscribe(); 
   }
-
 }
